@@ -10,7 +10,7 @@ import os
 ###############
 
 # Function to create a new dictionary in  json file. This creates a first entry if one doesn't currently exist
-def create_dict():
+def create_dict(file_name):
     transaction_history = []
     amount = 0
     category = "first_entry"
@@ -20,26 +20,25 @@ def create_dict():
     time = currentDT.strftime("%H:%M:%S")
 
 
-    with open("dict.json") as f:
-        transaction_history = json.load(f)
-        transaction_history.append({
-            "amount": amount,
-            "category": category,
-            "description": description,
-            "transaction_type": type_transaction,
-            "date": f"first access to checkbook app on {date}",
-            "time": time
-        })
+    
+    transaction_history = {
+        "amount": amount,
+        "category": category,
+        "description": description,
+        "transaction_type": type_transaction,
+        "date": f"first access to checkbook app on {date}",
+        "time": time
+    }
     
     j = json.dumps(transaction_history)
-    with open("dict.json", "w") as f:
+    with open(file_name, "w") as f:
         f.write(j)
 
 # Function to check if a dictionary with a specific file name already 
 # exits. If it doesn't, it creates a new dictionary with an entry dictionary with a value of 0
 def check_for_json_file(file_name):
     if os.path.exists(file_name) == False:
-        create_dict()
+        create_dict(file_name)
 
 # def is_it_float(user_input):
 #     user_input_float = user_input
@@ -191,6 +190,7 @@ def get_all_categories():
     print("Sum of deposits by category")
     print()
     pprint.pprint(data_category_deposit)
+    print()
     print("Sum of withdraws by category")
     print()
     pprint.pprint(data_category_withdraw)
