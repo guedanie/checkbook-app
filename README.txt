@@ -38,3 +38,5 @@ Although the app works as specify, there are some additional functions that I wo
     finding the right position within the loop statements to successfully break the loop, if the user chose to do it. 
 2. Formatting: While several of the outputs have been printed with pprints, it would have been ideal to create further formating outputs to 
     ensure that the app is easier to navigate and comprehend
+3. Further statistics: There is a function to see the total amount by category, but further statistics, such as avg spent, max and min categories, and even spent over time visualizations 
+    could further enhance the users experience.
