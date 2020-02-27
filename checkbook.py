@@ -154,7 +154,7 @@ def show_history():
 
 
 # Function used to pull all categories from the json file
-def look_up_by_category_deposit(category):
+def look_up_by_category(category):
     data = grab_dictionary()
     total = 0
     transactions = [x for x in data if x['category'] == category]
@@ -162,10 +162,19 @@ def look_up_by_category_deposit(category):
         total += transaction['amount']
     return total
 
-# Function used to get unique categories 
-def get_unique_categories():
+# Function used to get unique categories based on their transaction type
+def get_unique_categories_deposit():
     data = grab_dictionary()
-    categories = [x['category'] for x in data]
+    categories = [x['category'] for x in data if x['transaction_type'] == 'deposit']
+    unique_category = []
+    for x in categories:
+        if x not in unique_category:
+            unique_category.append(x)
+    return unique_category
+
+def get_unique_categories_withdraw():
+    data = grab_dictionary()
+    categories = [x['category'] for x in data if x['transaction_type'] == 'withdraw']
     unique_category = []
     for x in categories:
         if x not in unique_category:
@@ -173,11 +182,18 @@ def get_unique_categories():
     return unique_category
     
 # Function uses two previous functions to run a list comprehension and return a list with 
-# the sum values per categories
+# the sum values per categories. It provides two lists, one with all the categories that are categorized as 'withdraw' and 'deposit'
 def get_all_categories():
-    categories = get_unique_categories()
-    data_category = [(x, look_up_by_category_deposit(x)) for x in categories]
-    pprint.pprint(data_category)
+    categories_deposit = get_unique_categories_deposit()
+    categories_withdraw = get_unique_categories_withdraw()
+    data_category_deposit = [(x, look_up_by_category(x)) for x in categories_deposit]
+    data_category_withdraw = [(x, look_up_by_category(x)) for x in categories_withdraw]
+    print("Sum of deposits by category")
+    print()
+    pprint.pprint(data_category_deposit)
+    print("Sum of withdraws by category")
+    print()
+    pprint.pprint(data_category_withdraw)
     print()
 
 
