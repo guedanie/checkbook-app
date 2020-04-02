@@ -240,9 +240,7 @@ def select_line_number():
     print()
     user_line_choice = input("What line number do you want to update: ")
     data_index = pull_data_id()
-    if user_line_choice == 'exit':
-        exit_function()
-    elif user_line_choice.isdigit() == False:
+    if user_line_choice.isdigit() == False:
         print("Please enter a valid number")
         select_line_number()
     elif int(user_line_choice) not in data_index:
@@ -251,6 +249,7 @@ def select_line_number():
         print()
     else:
         return int(user_line_choice)
+    
     
 
 # def line_selected_by_user(user_line_choice):
@@ -404,22 +403,22 @@ def user_subchoice_loop():
 
 #Function creted to let users exit the current feature and return to the main menu. Not currently working properly so 
 # has been commented out.
-def exit_function():
-    user_input = '0'
-    user_subchoice = '0' 
-    while user_subchoice != '6':
-        print()
-        user_sub_menu_transactions()
-        print()
-        user_subchoice = user_input_sub_menu()
-        user_sub_choice(user_subchoice)
-    while user_input != '5':
-        print()
-        user_menu()
-        print()
-        user_input = user_input_menu()
-        print()
-        user_choice(user_input)    
+# def exit_function():
+#     user_input = '0'
+#     user_subchoice = '0' 
+#     while user_subchoice != '6':
+#         print()
+#         user_sub_menu_transactions()
+#         print()
+#         user_subchoice = user_input_sub_menu()
+#         user_sub_choice(user_subchoice)
+#     while user_input != '5':
+#         print()
+#         user_menu()
+#         print()
+#         user_input = user_input_menu()
+#         print()
+#         user_choice(user_input)    
 
 ##################
 ## Running Code ##
